@@ -1,0 +1,148 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries/
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+out/
+
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+# Logs and local env files
+*.log
+*.local
+.env
+.env.local
+
+# ------------------------
+# Android / Android Studio
+# ------------------------
+# Gradle
+.gradle/
+**/build/
+*/build/
+
+# Android Studio project files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Local config (sdk path)
+local.properties
+
+# Keystores & signing files
+*.jks
+*.keystore
+*.pem
+*.p12
+
+# Native build / CMake / NDK
+.externalNativeBuild/
+.cxx/
+obj/
+
+# Android Studio captures and crash reports
+captures/
+*.hprof
+
+# Kotlin
+*.kotlin_module
+
+# ------------------------
+# iOS / Xcode
+# ------------------------
+# Xcode build/derived data
+build/
+DerivedData/
+# Xcode project user settings and workspace user data
+*.xcuserdata
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+# Xcode schemes user files
+xcuserdata/
+
+# Xcode workspace and user-generated files (commonly ignored)
+*.xcworkspace
+# If you use CocoaPods and commit the generated workspace, remove the above line.
+# If you DON'T commit generated workspace, keep this ignored.
+
+# CocoaPods
+Pods/
+# If your project intentionally commits Pods/ (vendor check-in), remove this line.
+Podfile.lock
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.build/
+# Package.resolved is useful to commit for apps — remove it from ignore if you want to lock dependencies.
+# Package.resolved
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Signing/certs/profiles
+*.mobileprovision
+*.cer
+*.der
+*.crt
+
+# Simulator / device data
+*.xcappdata
+*.xcarchive
+CoreSimulator/
+*.simruntime
+
+# Misc iOS
+*.idevicedump
+*.ips
+*.dSYM.zip
+*.dSYM
+
+# ------------------------
+# OS / editor
+# ------------------------
+*.swp
+*~
