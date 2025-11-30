@@ -1,4 +1,3 @@
-```markdown
 # loyalty-service
 
 Purpose
@@ -86,4 +85,3 @@ This section maps the assessment requirements to the files and tests in this mod
 
 Contact
 - keamp84@gmail.com — for questions or clarifications.
-```
