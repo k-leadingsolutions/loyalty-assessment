@@ -1,5 +1,4 @@
-```markdown
-# Pact Contract Tests - loyalty-contracts
+# Loyalty-contracts
 
 Purpose
 - This module contains Pact consumer tests for the external services the loyalty-service calls:
@@ -43,5 +42,3 @@ Future improvements:
 
 Contact
 - keamp84@gmail.com — for questions or clarifications.
-
-```
