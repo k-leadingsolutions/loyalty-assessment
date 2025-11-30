@@ -1,5 +1,4 @@
-```markdown
-# loyalty-integration
+# Loyalty-integration
 
 Purpose
 - Component / integration tests for the loyalty-service using WireMock + Vert.x test harness.
@@ -59,4 +58,3 @@ Future improvements
 
 Contact
 - keamp84@gmail.com — for questions or clarifications.
-```
