@@ -24,14 +24,12 @@ Quick summary
 - Tech: Java 17, Vert.x 4, Maven, JUnit 5, WireMock, Pact JVM, Docker, GitHub Actions, Prometheus, OpenTelemetry, OpenAPI, Android (Kotlin + Jetpack Compose), iOS (Swift + SwiftUI).
 
 ---
----
+
 ## CI/CD Pipeline
-![CI](https://github.com/k-leadingsolutions/expenseshare-service/actions/workflows/ci.yml/badge.svg)]
-(https://github.com/k-leadingsolutions/expenseshare-service/blob/main/.github/workflows/ci.yml)
 
-## How to View Pipeline
+[![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml?query=branch%3Amain)
 
-- Click the **CI badge** at the top of this README to see build details and history on GitHub.
+[![Mobile tests](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml?query=branch%3Amain)
 
 ---
 
