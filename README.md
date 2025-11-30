@@ -150,6 +150,10 @@ Notes
 
 
 CI notes
+
+JacoCo code coverage reports are published as build artifacts in the CI workflow runs. After a successful run, navigate to the Actions tab, select a workflow run, and download the artifacts from the "Artifacts" section.
+- Artifact download URL: e.g. - https://github.com/k-leadingsolutions/loyalty-assessment/actions/runs/19794214240/artifacts/4715649832
+
 - Backend CI
 - The CI pipeline is defined in `.github/workflows/ci.yml`.
 - The workflow runs unit/integration/contract tests and publishes coverage reports (JaCoCo). The parent pom enforces branch coverage gates. 
