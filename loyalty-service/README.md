@@ -1,4 +1,4 @@
-# loyalty-service
+# Loyalty-service
 
 Purpose
 - Vert.x HTTP service that calculates loyalty points.
