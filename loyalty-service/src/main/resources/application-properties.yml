@@ -1,0 +1,34 @@
+# Application configuration for loyalty-service
+server:
+  port: 8888 # default port; tests can set -Dhttp.port=0 for ephemeral
+
+# External service endpoints (using built-in stubs hence empty URLs)
+external:
+  fx:
+    base-url: ""         # e.g: http://fx-service:8081
+    timeout-ms: 1000
+    retries: 2
+    retry-delay-ms: 200
+  promo:
+    base-url: ""            # e.g: http://promo-service:8082
+    timeout-ms: 1000
+    retries: 1
+    retry-delay-ms: 200
+
+# Business configuration
+business:
+  promo:
+    near-expiry-days: 2     # i.e PROMO_EXPIRES_SOON
+  points:
+    cap: 50000              # max total points
+
+# Observability / logging
+logging:
+  level: INFO
+
+# JVM / runtime hints
+runtime:
+  http:
+    # this value is only for documentation;
+    # value is actually set from server.port
+    bind-port: "${server.port}"

@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: Loyalty Points Quote Service
+  version: "1.0.0"
+  description: >
+    Small HTTP service that calculates loyalty points for a flight booking request.
+    Base points are computed after FX conversion, with tier and promo bonuses applied.
+servers:
+  - url: http://localhost:8888
+    description: Local dev server (override port with -Dhttp.port)
+
+paths:
+  /v1/points/quote:
+    post:
+      summary: Quote loyalty points for a booking
+      operationId: quotePoints
+      requestBody:
+        description: Booking fare and context used to compute points
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteRequest'
+            example:
+              fareAmount: 1234.50
+              currency: "USD"
+              cabinClass: "ECONOMY"
+              customerTier: "SILVER"
+              promoCode: "SUMMER25"
+      responses:
+        "200":
+          description: Successful points quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              examples:
+                default:
+                  value:
+                    basePoints: 1234
+                    tierBonus: 185
+                    promoBonus: 308
+                    totalPoints: 1727
+                    effectiveFxRate: 3.67
+                    warnings:
+                      - "PROMO_EXPIRES_SOON"
+        "400":
+          description: Invalid request (validation error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                invalidFare:
+                  value:
+                    code: "INVALID_REQUEST"
+                    message: "fareAmount must be > 0"
+                invalidCurrency:
+                  value:
+                    code: "INVALID_REQUEST"
+                    message: "invalid currency"
+                invalidCabin:
+                  value:
+                    code: "INVALID_REQUEST"
+                    message: "invalid cabinClass"
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                internalError:
+                  value:
+                    code: "INTERNAL_ERROR"
+                    message: "internal error"
+        "502":
+          description: Upstream dependency unavailable (FX service failure)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                fxUnavailable:
+                  value:
+                    code: "FX_SERVICE_UNAVAILABLE"
+                    message: "fx service unavailable"
+        "503":
+          description: Temporary service degraded (promo service unavailable; request processed without promo)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                degraded:
+                  value:
+                    code: "SERVICE_DEGRADED"
+                    message: "promo service unavailable, proceeding without promo"
+
+components:
+  schemas:
+    QuoteRequest:
+      type: object
+      required:
+        - fareAmount
+        - currency
+        - cabinClass
+        - customerTier
+      properties:
+        fareAmount:
+          type: number
+          format: double
+          description: Fare amount in the given currency (must be > 0)
+          example: 1234.50
+        currency:
+          type: string
+          description: |
+            ISO currency code. Note: the service validates the currency against a configured
+            allowed list (system property "allowed.currencies", default: USD,EUR,AED).
+            The server expects uppercase 3-letter codes (e.g. "USD"). If the currency
+            is not in the allowed list the request will be rejected with 400.
+          example: "USD"
+          pattern: "^[A-Z]{3}$"
+        cabinClass:
+          type: string
+          description: Travel cabin class
+          enum:
+            - ECONOMY
+            - PREMIUM_ECONOMY
+            - BUSINESS
+            - FIRST
+          example: "ECONOMY"
+        customerTier:
+          type: string
+          description: Customer loyalty tier
+          enum:
+            - NONE
+            - SILVER
+            - GOLD
+            - PLATINUM
+          example: "SILVER"
+        promoCode:
+          type: string
+          nullable: true
+          description: Optional promo code to apply
+          example: "SUMMER25"
+
+    QuoteResponse:
+      type: object
+      properties:
+        basePoints:
+          type: integer
+          description: Points after FX conversion (floored)
+          example: 1234
+        tierBonus:
+          type: integer
+          description: Bonus points from customer tier (floored)
+          example: 185
+        promoBonus:
+          type: integer
+          description: Bonus points from promo (floored or fixed)
+          example: 308
+        totalPoints:
+          type: integer
+          description: Final total (capped at configured maximum)
+          example: 1727
+        effectiveFxRate:
+          type: number
+          format: double
+          description: FX conversion rate used (points per unit currency)
+          example: 3.67
+        warnings:
+          type: array
+          items:
+            type: string
+          description: Informational warnings (e.g., PROMO_EXPIRES_SOON, PROMO_UNAVAILABLE)
+          example:
+            - "PROMO_EXPIRES_SOON"
+
+    Promo:
+      type: object
+      properties:
+        code:
+          type: string
+        percent:
+          type: number
+          format: double
+          description: Fractional percent (0.25 == 25%)
+        expiresInDays:
+          type: integer
+          description: Days until promo expiry
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+
+security: []  # no auth for the current scope; plan to add API key or JWT/OAuth2 in the future
