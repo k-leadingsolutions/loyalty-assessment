@@ -37,17 +37,17 @@ mvn -B -V -e clean verify
 
 - Run unit tests only (service module):
 ```sh
-mvn -pl loyalty-service test
+mvn -am -pl loyalty-service test
 ```
 
 - Run integration tests only:
 ```sh
-mvn -pl loyalty-integration verify
+mvn -am -pl loyalty-integration test
 ```
 
 - Run contract tests only:
 ```sh
-mvn -pl loyalty-contracts test
+mvn  -pl loyalty-contracts test
 ```
 
 Dev: run the service locally (class files + dependencies)
