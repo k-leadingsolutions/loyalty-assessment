@@ -49,7 +49,10 @@ jobs:
           # Accept licenses (ignore non-zero return to avoid failing on certain outputs)
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_SDK_ROOT" --licenses || true
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_SDK_ROOT" "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
+          # Export both variables so Gradle sees the same SDK location (avoids ANDROID_HOME vs ANDROID_SDK_ROOT conflict)
           echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT" >> "$GITHUB_ENV"
+          echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> "$GITHUB_ENV"
+          echo "Added ANDROID_SDK_ROOT and ANDROID_HOME pointing to $ANDROID_SDK_ROOT"
 
       - name: Run Android unit tests
         working-directory: mobile/android
@@ -71,7 +74,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Locate iOS SwiftPM project and run tests
+      - name: Locate iOS SwiftPM project and run tests (if present)
+        id: ios-locate-and-test
         run: |
           set -euo pipefail
           # Look for a SwiftPM Package.swift first, fall back to Xcode project presence
@@ -82,20 +86,23 @@ jobs:
           fi
           if [ -z "$IOS_DIR" ]; then
             echo "No iOS SwiftPM or Xcode project found within repository. Skipping iOS unit tests."
+            echo "IOS_DIR=" >> "$GITHUB_ENV"
             exit 0
           fi
           echo "Found iOS project at: $IOS_DIR"
+          # export for subsequent steps
+          echo "IOS_DIR=$IOS_DIR" >> "$GITHUB_ENV"
           cd "$IOS_DIR"
-          # If SwiftPM present run swift test (enable-test-discovery for newer versions)
           if [ -f "Package.swift" ]; then
+            # Run Swift package tests (enable-test-discovery for newer SwiftPM versions)
             swift test --enable-test-discovery
           else
             echo "No Package.swift; only Xcode project found. Skipping swift test step."
           fi
 
       - name: Upload iOS test results
-        if: always()
+        if: env.IOS_DIR != ''
         uses: actions/upload-artifact@v4
         with:
           name: ios-test-results
-          path: ios-app/.build
+          path: ${{ env.IOS_DIR }}/.build
