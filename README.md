@@ -26,7 +26,11 @@ Quick summary
 
 
 ## CI/CD Pipeline
-[![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml)
+
+[![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml)
+
+
+[![Mobile tests](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-unit-tests.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml)
 
 
 Build & test (local)
