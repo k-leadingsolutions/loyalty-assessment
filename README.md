@@ -29,9 +29,8 @@ Quick summary
 
 [![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml?query=branch%3Amain)
 
-[![Mobile tests](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-unit-tests.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-unit-tests.yml?query=branch%3Amain)
+[![Mobile tests](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml?query=branch%3Amain)
 
-- Click the **CI badge** at the top of this README to see build details and history on GitHub.
 ---
 
 Build & test (local)
