@@ -1,4 +1,3 @@
-```markdown
 # Mobile Login Component — README
 
 Short summary
@@ -90,4 +89,3 @@ Future improvements:
 
 Contact
 - keamp84@gmail.com — for questions or clarifications.
-```
