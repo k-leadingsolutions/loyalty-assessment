@@ -24,15 +24,16 @@ Quick summary
 - Focus: clear module separation, scalable, deterministic tests, and simple code.
 - Tech: Java 17, Vert.x 4, Maven, JUnit 5, WireMock, Pact JVM, Docker, GitHub Actions, Prometheus, OpenTelemetry, OpenAPI, Android (Kotlin + Jetpack Compose), iOS (Swift + SwiftUI).
 
+---
 
 ## CI/CD Pipeline
+![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg)]
+(https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml)
 
-[![CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml)
+![Mobile CI](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/ci.yml/badge.svg)]
+(https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-unit-tests.yml)
 
-
-[![Mobile tests](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-unit-tests.yml/badge.svg?branch=main)](https://github.com/k-leadingsolutions/loyalty-assessment/actions/workflows/mobile-ci.yml)
-
-
+---
 Build & test (local)
 - Run all tests (unit + integration + contracts):
 ```sh
