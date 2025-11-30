@@ -1,4 +1,3 @@
-```markdown
 # Loyalty Assessment
 
 -  ✨ Why This Project?
@@ -172,4 +171,3 @@ Future improvements
 
 Contact
 - keamp84@gmail.com — for questions or clarifications.
-```
