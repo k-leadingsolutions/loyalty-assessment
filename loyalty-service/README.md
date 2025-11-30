@@ -83,5 +83,10 @@ This section maps the assessment requirements to the files and tests in this mod
 - Observability
   - Micrometer metrics and `/metrics` endpoint in `MainVerticle` (Prometheus registry wiring in tests)
 
+- Future improvements
+  - Add Idempotency support for quote requests (e.g. Idempotency-Key header handling).
+  - Redis caching layer for FX rates to reduce external calls.
+  - Kafka event publishing for quote requests for audit/logging.
+
 Contact
 - keamp84@gmail.com — for questions or clarifications.
